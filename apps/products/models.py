@@ -11,7 +11,7 @@ class Comments(models.Model):
     message = models.TextField()
     rate = models.IntegerField()
     date = models.DateField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
+
 

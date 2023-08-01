@@ -1,43 +1,44 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 # Create your views here.
 
-def home_view(request):
-    return render(request, 'index.html')
+class Index(TemplateView):
+    template_name = 'index.html'
 
 
-def tracking_view(request):
-    return render(request, 'tracking-order.html')
+class Tracking_view(TemplateView):
+    template_name = 'index.html'
 
 
-def blog_view(request):
-    return render(request, 'blog.html')
+class Blog_view(TemplateView):
+    template_name = 'blog.html'
 
 
-def cart_view(request):
-    return render(request, 'cart.html')
+class Cart_view(TemplateView):
+    template_name = 'cart.html'
 
 
-def category_view(request):
-    return render(request, 'category.html')
+class Category_view(TemplateView):
+    template_name = 'category.html'
 
 
-def checkout_view(request):
-    return render(request, 'checkout.html')
+class Checkout_view(TemplateView):
+    template_name = 'checkout.html'
 
 
-def confirm_view(request):
-    return render(request, 'confirmation.html')
+class Confirm_view(TemplateView):
+    template_name = 'confirmation.html'
 
 
-def contact_view(request):
-    return render(request, 'contact.html')
+class Contact_view(TemplateView):
+    template_name = 'contact.html'
 
 
-def single_blog_view(request):
-    return render(request, 'single-blog.html')
+class Single_blog_view(TemplateView):
+    template_name = 'single-blog.html'
 
 
-def single_product_view(request):
-    return render(request, 'single-product.html')
+class Single_product_view(TemplateView):
+    template_name = 'single-product.html'

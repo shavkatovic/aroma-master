@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
 import sys
+from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-7#@%pn(5g%y-*=*fhe-2eyk+$wd=4qh)glcip=v=bnd9xgm6hq
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'auth.User'
 # Application definition
 
 INSTALLED_APPS = [

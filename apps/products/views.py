@@ -1,15 +1,20 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views import View
+from django.views.generic import TemplateView, DetailView, ListView
+
+from products.models import Product
 
 
 # Create your views here.
 
-class Index(TemplateView):
+class Index(ListView):
+    queryset = Product.objects.all()
+    context_object_name = 'products'
     template_name = 'index.html'
 
 
 class Tracking_view(TemplateView):
-    template_name = 'index.html'
+    template_name = 'tracking-order.html'
 
 
 class Blog_view(TemplateView):
@@ -40,5 +45,7 @@ class Single_blog_view(TemplateView):
     template_name = 'single-blog.html'
 
 
-class Single_product_view(TemplateView):
+class Single_product_view(DetailView):
+    queryset = Product.objects.all()
+    context_object_name = 'product'
     template_name = 'single-product.html'

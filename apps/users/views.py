@@ -21,7 +21,7 @@ class RegisterView(CreateView):
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = CustomLoginForm
-    success_url = reverse_lazy('register')
+    success_url = reverse_lazy('tracking')
 
     def form_invalid(self, form):
         return redirect('login')

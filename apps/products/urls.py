@@ -13,5 +13,5 @@ urlpatterns = [
     path('confirm/', Confirm_view.as_view(), name='confirm'),
     path('contact/', Contact_view.as_view(), name='contact'),
     path('single_blog/', Single_blog_view.as_view(), name='single-blog'),
-    path('single_product/', Single_product_view.as_view(), name='single-product'),
+    path('product/<int:pk>', Single_product_view.as_view(), name='single-product'),
 ]

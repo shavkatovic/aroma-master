@@ -19,5 +19,13 @@ class Product(models.Model):
     descriptions = models.TextField(blank=True, null=True)
     quantity = models.IntegerField()
 
+
 # {% if product.quantity %}In stock {% else %} Out of
 #                                 Stock{% endif %}
+
+
+class Post(models.Model):
+    name = models.CharField(max_length=128)
+    email = models.EmailField()
+    subject = models.CharField(max_length=128)
+    message = models.TextField()

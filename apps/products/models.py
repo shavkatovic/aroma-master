@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import ForeignKey, ImageField, CASCADE
 
 
 # Create your models here.
@@ -36,9 +37,13 @@ class BlogCategory(models.Model):
 
 
 class Blog(models.Model):
-    image = models.ImageField(upload_to='blog/image')
     title = models.CharField(max_length=128)
     descriptions = models.TextField(blank=True, null=True)
     category = models.ManyToManyField('products.BlogCategory', related_name='blog')
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
+
+
+class BlogImages(models.Model):
+    blog = ForeignKey('products.Blog', CASCADE, 'images')
+    image = ImageField(upload_to='images/blog/')

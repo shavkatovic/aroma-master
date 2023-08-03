@@ -17,15 +17,6 @@ class Index(TemplateView):
         context['blogs'] = Blog.objects.all()
         return context
 
-    #         user_id = self.kwargs.get('pk')
-    #         context['user'] = User.objects.filter(id=user_id).first()
-    #         context['servis'] = Service.objects.filter(user_id=user_id).all()
-    #         context['blog'] = Blog.objects.filter(user_id=user_id).all()
-    #         context['skill'] = Skill.objects.filter(user_id=user_id).all()
-    #         context['port'] = Portfolio.objects.filter(user_id=user_id).all()
-    #         return context
-
-    # http_method_names = ['post']
 
 
 class Tracking_view(TemplateView):

@@ -16,6 +16,7 @@ class BlogImageInline(TabularInline):
     extra = 1
 
 
+
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
     inlines = [BlogImageInline]

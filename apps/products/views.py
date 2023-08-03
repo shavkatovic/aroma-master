@@ -1,9 +1,10 @@
-from django.http.response import HttpResponseNotAllowed
-from django.shortcuts import render
-from django.views import View
 from django.views.generic import TemplateView, DetailView, ListView
-
+from httpx import post
 from products.models import Product, Blog
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -16,16 +17,6 @@ class Index(TemplateView):
         context['products'] = Product.objects.all()
         context['blogs'] = Blog.objects.all()
         return context
-
-    #         user_id = self.kwargs.get('pk')
-    #         context['user'] = User.objects.filter(id=user_id).first()
-    #         context['servis'] = Service.objects.filter(user_id=user_id).all()
-    #         context['blog'] = Blog.objects.filter(user_id=user_id).all()
-    #         context['skill'] = Skill.objects.filter(user_id=user_id).all()
-    #         context['port'] = Portfolio.objects.filter(user_id=user_id).all()
-    #         return context
-
-    # http_method_names = ['post']
 
 
 class Tracking_view(TemplateView):
@@ -55,6 +46,15 @@ class Confirm_view(TemplateView):
 class Contact_view(TemplateView):
     template_name = 'contact.html'
 
+    def post(self, request, *args, **kwargs):
+        data = super().get(request, *args, **kwargs)
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        message = request.POST.get('message', '')
+        m = f'''📥 New mail\n📩 From: {email}\n👱 Name: {name}\n📄 Message: {message}'''
+        send_message(5654406350, m)
+        return data
+
 
 class Single_blog_view(TemplateView):
     template_name = 'single-blog.html'
@@ -64,3 +64,12 @@ class Single_product_view(DetailView):
     queryset = Product.objects.all()
     context_object_name = 'product'
     template_name = 'single-product.html'
+
+
+def send_message(chat_id, message):
+    url = f'https://api.telegram.org/bot6133066485:AAH2TIFdMuj2LRlfZOV1TUFqOwKKYF37oeo/sendMessage'
+    params = {
+        'chat_id': chat_id,
+        'text': message
+    }
+    post(url, params=params)

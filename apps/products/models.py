@@ -25,7 +25,29 @@ class Product(models.Model):
 
 
 class Post(models.Model):
+    class Position(models.IntegerChoices):
+        one = 1, '1'
+        two = 2, '2'
+        three = 3, '3'
+        four = 4, '4'
+        five = 5, '5'
+
+    positions = models.IntegerField(choices=Position.choices, default=Position.three, verbose_name=Position)
     name = models.CharField(max_length=128)
     email = models.EmailField()
     subject = models.CharField(max_length=128)
     message = models.TextField()
+    product = models.ForeignKey('products.Product', on_delete=models.CASCADE, related_name='product')
+
+
+class BlogCategory(models.Model):
+    title = models.CharField(max_length=128)
+
+
+class Blog(models.Model):
+    image = models.ImageField(upload_to='blog/image')
+    title = models.CharField(max_length=128)
+    descriptions = models.TextField(blank=True, null=True)
+    category = models.ManyToManyField('products.BlogCategory', related_name='blog')
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)

@@ -12,6 +12,6 @@ urlpatterns = [
     path('checkout/', Checkout_view.as_view(), name='checkout'),
     path('confirm/', Confirm_view.as_view(), name='confirm'),
     path('contact/', Contact_view.as_view(), name='contact'),
-    path('single_blog/', Single_blog_view.as_view(), name='single-blog'),
+    path('single/<int:pk>/', Single_blog_view.as_view(), name='single-blog'),
     path('product/<int:pk>', Single_product_view.as_view(), name='single-product'),
 ]

@@ -1,8 +1,8 @@
 from django.http.response import HttpResponseNotAllowed
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView, DetailView, ListView
-
+from django.views.generic import TemplateView, DetailView, CreateView
+from django.urls import reverse_lazy
 from products.models import Product, Blog
 
 
@@ -16,7 +16,6 @@ class Index(TemplateView):
         context['products'] = Product.objects.all()
         context['blogs'] = Blog.objects.all()
         return context
-
 
 
 class Tracking_view(TemplateView):

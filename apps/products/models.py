@@ -40,8 +40,8 @@ class Blog(models.Model):
 
 
 class BlogImages(models.Model):
-    blog = ForeignKey('products.Blog', CASCADE, 'images')
-    image = ImageField(upload_to='images/blog/')
+    blog = ForeignKey('products.Blog', CASCADE, 'image')
+    image = ImageField(upload_to='blog/image')
 
 
 class ShoppingCard(models.Model):

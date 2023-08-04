@@ -21,13 +21,8 @@ class Product(models.Model):
     quantity = models.IntegerField()
 
 
-# {% if product.quantity %}In stock {% else %} Out of
-#                                 Stock{% endif %}
-
-
 class Comment(models.Model):
     name = models.CharField(max_length=128)
-    email = models.EmailField()
     message = models.TextField()
     product = models.ForeignKey('products.Product', on_delete=models.CASCADE, related_name='product')
 
@@ -47,3 +42,15 @@ class Blog(models.Model):
 class BlogImages(models.Model):
     blog = ForeignKey('products.Blog', CASCADE, 'images')
     image = ImageField(upload_to='images/blog/')
+
+
+class ShoppingCard(models.Model):
+    product = ForeignKey('products.Product', CASCADE, 'card')
+    user = ForeignKey('auth.User', CASCADE, 'user')
+    quantity = models.IntegerField()
+
+
+class ReplayComment(models.Model):
+    comment = models.ForeignKey('products.Comment', CASCADE, 'replay')
+    message = models.TextField()
+    rate = models.CharField(max_length=3)

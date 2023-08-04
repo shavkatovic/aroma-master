@@ -65,25 +65,25 @@ class SingleProductView(CreateView, DetailView):
         return context
 
 
-class ReplayCommentCreateView(CreateView):
-    template_name = 'single-product.html'
-    model = ReplayComment
-    form_class = ReplayCommentForm
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        product_pk = self.kwargs['pk']
-        context['product'] = get_object_or_404(Product, pk=product_pk)
-        context['com'] = Comment.objects.filter(product=context['product'])
-        context['rk'] = self.kwargs['rk']
-        context['replay_comment'] = ReplayComment.objects.all()
-        return context
-
-    def get_success_url(self):
-        return reverse('home')
-
-    def form_valid(self, form):
-        product_pk = self.kwargs['pk']
-        product = get_object_or_404(Product, pk=product_pk)
-        form.instance.product = product
-        return super().form_valid(form)
+# class ReplayCommentCreateView(CreateView):
+#     template_name = 'single-product.html'
+#     model = ReplayComment
+#     form_class = ReplayCommentForm
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         product_pk = self.kwargs['pk']
+#         context['product'] = get_object_or_404(Product, pk=product_pk)
+#         context['com'] = Comment.objects.filter(product=context['product'])
+#         context['rk'] = self.kwargs['rk']
+#         context['replay_comment'] = ReplayComment.objects.all()
+#         return context
+#
+#     def get_success_url(self):
+#         return reverse('home')
+#
+#     def form_valid(self, form):
+#         product_pk = self.kwargs['pk']
+#         product = get_object_or_404(Product, pk=product_pk)
+#         form.instance.product = product
+#         return super().form_valid(form)

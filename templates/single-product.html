@@ -176,7 +176,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <h4>{{ replay.comment.name }}</h4>
-                                                {% for _ in replay.rate %}
+                                                {% for i in replay.rate  %}
                                                     <i class="fa fa-star"></i>
                                                 {% endfor %}
                                             </div>
@@ -213,7 +213,7 @@
                                     </div>
                                     <input type="hidden" value="{{ rk }}" name="comment">
                                     <div class="form-group text-center text-md-right mt-3">
-                                        <button type="submit" class="button button--active button-review">Submit Now
+                                        <button type="submit" name="replay_name" class="button button--active button-review">Submit Now
                                         </button>
                                     </div>
                                 </form>

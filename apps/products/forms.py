@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from products.models import Comment, ShoppingCard, ReplayComment
+from products.models import Comment, ShoppingCard, ReplayComment, BlogComments
 
 
 class CommentForm(ModelForm):
@@ -19,3 +19,9 @@ class ReplayCommentForm(ModelForm):
     class Meta:
         model = ReplayComment
         fields = ('message', 'rate', 'comment')
+
+
+class BlogCommentForm(ModelForm):
+    class Meta:
+        model = BlogComments
+        fields = ('fullname', 'email', 'comment')

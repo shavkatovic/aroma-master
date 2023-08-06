@@ -1,11 +1,11 @@
 from django.http.response import HttpResponseNotAllowed
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView, DetailView, CreateView
+from django.views.generic import TemplateView, DetailView, CreateView, ListView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404, reverse
-from products.forms import CommentForm, ReplayCommentForm
-from products.models import Product, Blog, Comment, ReplayComment
+from .forms import CommentForm, ReplayCommentForm
+from .models import Product, Blog, Comment, ReplayComment
 
 
 # Create your views here.
@@ -48,8 +48,13 @@ class Contact_view(TemplateView):
     template_name = 'contact.html'
 
 
-class Single_blog_view(TemplateView):
+class Single_blog_view(CreateView,DetailView):
+    model = Blog
+    context_object_name = 'blog'
     template_name = 'single-blog.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
 
 
 class SingleProductView(CreateView, DetailView):
@@ -63,7 +68,6 @@ class SingleProductView(CreateView, DetailView):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.all()
         return context
-
 
 # class ReplayCommentCreateView(CreateView):
 #     template_name = 'single-product.html'

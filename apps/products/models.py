@@ -54,3 +54,10 @@ class ReplayComment(models.Model):
     comment = models.ForeignKey('products.Comment', CASCADE, 'replay')
     message = models.TextField()
     rate = models.CharField(max_length=3)
+
+
+class BlogComments(models.Model):
+    fullname = models.CharField(max_length=128)
+    email = models.EmailField()
+    comment = models.TextField()
+    blog = ForeignKey('products.Blog', CASCADE, 'comments')
